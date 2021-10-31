@@ -6,11 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 const ManageCard = (props) => {
   const { destanation, name, email, address, _id } = props.mcard;
   const notify = () => toast.success("Deleted Successfully ");
+  const isDelete = window.confirm("Are You Sure You Want to Delete ?");
   const handleDelete = (id) => {
-    fetch(`https://hidden-woodland-99652.herokuapp.com/placeorder/${id}`, {
-      method: "DELETE",
-    });
-    notify();
+    if (isDelete) {
+      fetch(`https://hidden-woodland-99652.herokuapp.com/placeorder/${id}`, {
+        method: "DELETE",
+      });
+      notify();
+    }
   };
   return (
     <Container style={{ marginBottom: "20px", marginTop: "20px" }}>
