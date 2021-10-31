@@ -1,0 +1,29 @@
+.bgimg {
+  background-image: url("https://i.ibb.co/GxfNBnB/image-10.jpg");
+  background-repeat: no-repeat;
+  height: 680px;
+}
+.ldiv {
+  width: 100%;
+  margin-left: 200px;
+  margin-top: 250px;
+  color: white;
+}
+span {
+  color: #ff843d;
+}
+
+@media only screen and (max-width: 600px) {
+  .bgimg {
+    background-image: url("https://i.ibb.co/GxfNBnB/image-10.jpg");
+    background-repeat: no-repeat;
+    /* height: 645px; */
+    height: 645px;
+  }
+  .ldiv {
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 150px;
+    color: white;
+  }
+}
