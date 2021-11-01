@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Shared/Header/Header";
 import Home from "./pages/Home/Home/Home";
 import Footer from "./Shared/Footer/Footer";
-
 import LoginUi from "./pages/Login/LoginUi/LoginUi";
 import AuthProvider from "./context/AuthProvider";
 import PrivateRoute from "./component/PrivateRoute";
 import AllServices from "./pages/Services/AllServices";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder/PlaceOrder";
+import AddNewService from "./pages/AddNewService/AddNewService";
+import ManageAllOrfer from "./pages/ManageAllOrder/ManageAllOrfer";
 
 function App() {
   return (
@@ -26,8 +27,11 @@ function App() {
             <Route path="/login">
               <LoginUi></LoginUi>
             </Route>
-            <PrivateRoute path="/packages">
-              <AllServices></AllServices>
+            <PrivateRoute path="/manageall">
+              <ManageAllOrfer></ManageAllOrfer>
+            </PrivateRoute>
+            <PrivateRoute path="/addservice">
+              <AddNewService></AddNewService>
             </PrivateRoute>
             <PrivateRoute path="/placeorder/:pakId">
               <PlaceOrder></PlaceOrder>

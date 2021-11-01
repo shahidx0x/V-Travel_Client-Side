@@ -3,18 +3,40 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
 import "./PlaceOrder.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PlaceOrder = () => {
   const { user } = useAuth();
   const { pakId } = useParams();
   const [orders, setOrder] = useState({});
+  const [status, setStatus] = useState(false);
   const { register, handleSubmit } = useForm();
+  const notify = () => toast.success("Submitted Successfully ");
+
   const onSubmit = (data) => {
+    data.destanation = orders.name;
     data.name = user.displayName;
     data.email = user.email;
+    const destanation = data.destanation;
+    const name = data.name;
+    const email = data.email;
     const address = data.address;
-    console.log(data.name, data.email, address);
+    console.log(destanation, name, email, address);
+    axios({
+      method: "post",
+      url: "https://hidden-woodland-99652.herokuapp.com/placeorder",
+      data: {
+        destanation: destanation,
+        name: name,
+        email: email,
+        address: address,
+      },
+    });
+    notify();
+    setStatus(true);
   };
   const serverUrl = `https://hidden-woodland-99652.herokuapp.com/services/${pakId}`;
   useEffect(() => {
@@ -25,6 +47,7 @@ const PlaceOrder = () => {
   return (
     <div>
       <Container style={{ marginTop: "100px" }}>
+        <ToastContainer />
         <Row className="gap-2" style={{ marginBottom: "100px" }}>
           <h2 className="text-center mb-5 " style={{ fontSize: "40px" }}>
             <span>
@@ -74,12 +97,17 @@ const PlaceOrder = () => {
                   borderRadius: "10px",
                 }}
               >
-                status : pending
+                status : {status ? "confirmd" : "pending"}
               </p>
             </div>
             <div style={{ marginTop: "90px" }}>
               <p className="text-center fw-bold">Booking Address</p>
               <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  placeholder="Destanation"
+                  defaultValue={orders.name}
+                  {...register("destanation")}
+                />
                 <input
                   placeholder="Name"
                   defaultValue={user.displayName}
