@@ -10,6 +10,7 @@ import AllServices from "./pages/Services/AllServices";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder/PlaceOrder";
 import AddNewService from "./pages/AddNewService/AddNewService";
 import ManageAllOrfer from "./pages/ManageAllOrder/ManageAllOrfer";
+import MyOrder from "./pages/MyOrder/MyOrder";
 
 function App() {
   return (
@@ -29,6 +30,12 @@ function App() {
             </Route>
             <PrivateRoute path="/manageall">
               <ManageAllOrfer></ManageAllOrfer>
+            </PrivateRoute>
+            <Route path="/packages">
+              <AllServices></AllServices>
+            </Route>
+            <PrivateRoute path="/myorder">
+              <MyOrder></MyOrder>
             </PrivateRoute>
             <PrivateRoute path="/addservice">
               <AddNewService></AddNewService>

@@ -44,7 +44,13 @@ const Header = () => {
                       Add a New Service
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Button onClick={logout} variant="outline-secondary ">
+                  <Button
+                    onClick={() => {
+                      logout();
+                      window.location.reload();
+                    }}
+                    variant="outline-secondary "
+                  >
                     Logout
                   </Button>
                 </>

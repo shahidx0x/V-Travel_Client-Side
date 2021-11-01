@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import "./PlaceOrder.css";
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 const PlaceOrder = () => {
   const { user } = useAuth();
   const { pakId } = useParams();
+  const history = useHistory();
   const [orders, setOrder] = useState({});
   const [status, setStatus] = useState(false);
   const { register, handleSubmit } = useForm();
@@ -37,6 +38,9 @@ const PlaceOrder = () => {
     });
     notify();
     setStatus(true);
+    setTimeout(() => {
+      history.push("/myorder");
+    }, 1000);
   };
   const serverUrl = `https://hidden-woodland-99652.herokuapp.com/services/${pakId}`;
   useEffect(() => {
