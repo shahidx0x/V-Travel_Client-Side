@@ -7,14 +7,15 @@ import {
   Button,
   Offcanvas,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const { user, signInGoogle, logout } = useAuth();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
+  const history = useHistory();
   return (
     <>
       <Navbar className="fixed-top" bg="dark" variant="dark" expand="lg">
@@ -56,7 +57,10 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Button variant="outline-warning" onClick={handleShow}>
+                  <Button
+                    variant="outline-warning"
+                    onClick={() => history.push("/login")}
+                  >
                     Login/Register
                   </Button>
                   <Offcanvas
